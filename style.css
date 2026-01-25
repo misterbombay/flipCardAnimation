@@ -1,0 +1,87 @@
+.flip-card {
+  position: relative;
+  height: 320px;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  background: #f8f9fa;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  transition: all 0.5s ease;
+}
+
+/* TOP COLORED BACKGROUND */
+.card-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(13, 110, 253, 0.8); /* bootstrap primary */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.6s ease;
+  z-index: 2;
+}
+
+.card-title {
+  color: #fff;
+  transition: all 0.6s ease;
+}
+
+/* BODY */
+.card-body {
+  position: relative;
+  z-index: 3;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card-text {
+  transition: all 0.6s ease;
+}
+
+/* ICON */
+.click-icon {
+  font-size: 24px;
+  margin-top: 10px;
+  transition: opacity 0.4s ease;
+}
+
+/* IMAGE (hidden initially) */
+.card-image {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease;
+}
+
+/* ===================== */
+/* ACTIVE / BACK STATE   */
+/* ===================== */
+
+.flip-card.active .card-top {
+  height: 70px; /* ~2 lines */
+  justify-content: center;
+}
+
+.flip-card.active .card-title {
+  font-size: 1rem;
+}
+
+.flip-card.active .card-text {
+  transform: translateY(-80px);
+  font-weight: 600;
+}
+
+.flip-card.active .click-icon {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.flip-card.active .card-image {
+  opacity: 1;
+  transform: translateY(0);
+  margin-top: 60px;
+}

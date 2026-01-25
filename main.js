@@ -1,14 +1,44 @@
-const flipCard = document.getElementById("flipCard");
-  let resetTimer;
+const cards = document.querySelectorAll(".flip-card");
 
-  flipCard.addEventListener("click", () => {
-    // Prevent re-trigger
-    if (flipCard.classList.contains("active")) return;
+cards.forEach(card => {
+  let timer;
 
-    flipCard.classList.add("active");
+  const activateCard = () => {
+    // Close other cards
+    cards.forEach(c => {
+      if (c !== card) {
+        c.classList.remove("active");
+        c.setAttribute("aria-expanded", "false");
+      }
+    });
 
-    // Auto reset after 30 seconds
-    resetTimer = setTimeout(() => {
-      flipCard.classList.remove("active");
-    }, 3000);
+    // Toggle current card
+    const isActive = card.classList.contains("active");
+
+    clearTimeout(timer);
+
+    if (isActive) {
+      card.classList.remove("active");
+      card.setAttribute("aria-expanded", "false");
+      return;
+    }
+
+    card.classList.add("active");
+    card.setAttribute("aria-expanded", "true");
+
+    // Auto reset after 30s
+    timer = setTimeout(() => {
+      card.classList.remove("active");
+      card.setAttribute("aria-expanded", "false");
+    }, 30000);
+  };
+
+  card.addEventListener("click", activateCard);
+
+  card.addEventListener("keydown", e => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      activateCard();
+    }
   });
+});

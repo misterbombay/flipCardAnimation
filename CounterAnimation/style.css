@@ -8,3 +8,28 @@
   opacity: 1;
   transform: translateY(0);
 }
+
+@media (min-width: 768px) {
+  .stats-row {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .stats-row > .col-md-4 {
+    flex: 0 0 33.333%;
+    max-width: 33.333%;
+  }
+
+  /* One card in last row */
+  .stats-row > .col-md-4:last-child:nth-child(3n + 1) {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Two cards in last row */
+  .stats-row > .col-md-4:nth-last-child(2):nth-child(3n + 1),
+  .stats-row > .col-md-4:last-child:nth-child(3n + 2) {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

@@ -13,30 +13,27 @@ document.addEventListener("DOMContentLoaded", () => {
     const type = counter.dataset.type || "number";
     const decimals = Number(counter.dataset.decimals || 0);
 
-    let start = 0;
-    let current = 0;
+    let startTime = null;
 
-    // duration depends on number size → smaller ends faster
-    const duration =
-      target < 100 ? 800 :
-      target < 1000 ? 1000 :
-      target < 100000 ? 1400 :
-      1800;
+    // 🔹 SAME duration for all counters
+    const duration = 1500; // ms (tweak if needed)
 
     function update(timestamp) {
-      if (!start) start = timestamp;
-      const progress = Math.min((timestamp - start) / duration, 1);
+      if (!startTime) startTime = timestamp;
 
-      // ease-out cubic
-      const eased = 1 - Math.pow(1 - progress, 3);
-      current = target * eased;
+      const elapsed = timestamp - startTime;
+      const progress = Math.min(elapsed / duration, 1);
 
-      counter.innerText = formatValue(current, type, decimals);
+      // smooth ease-out
+      const easedProgress = 1 - Math.pow(1 - progress, 3);
+      const currentValue = target * easedProgress;
+
+      counter.innerText = formatValue(currentValue, type, decimals);
 
       if (progress < 1) {
         requestAnimationFrame(update);
       } else {
-        // ensure final value is exact
+        // ensure exact final value
         counter.innerText = formatValue(target, type, decimals);
       }
     }
@@ -65,7 +62,8 @@ document.addEventListener("DOMContentLoaded", () => {
   );
 
   cards.forEach((card, index) => {
-    card.style.transitionDelay = `${index * 150}ms`; // stagger
+    // stagger card appearance
+    card.style.transitionDelay = `${index * 150}ms`;
     observer.observe(card);
   });
 });

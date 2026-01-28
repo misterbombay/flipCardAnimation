@@ -1,17 +1,19 @@
 <script>
-  const section = document.querySelector(".split-section");
+  const sections = document.querySelectorAll(".split-section");
 
   const observer = new IntersectionObserver(
-    ([entry]) => {
-      if (entry.isIntersecting) {
-        section.classList.add("is-visible");
-        observer.disconnect(); // 🔒 lock final state
-      }
+    (entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target); // animate once
+        }
+      });
     },
     {
-      threshold: 0.3, // triggers when 30% visible
+      threshold: 0.3,
     }
   );
 
-  observer.observe(section);
+  sections.forEach(section => observer.observe(section));
 </script>

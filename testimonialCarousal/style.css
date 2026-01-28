@@ -1,0 +1,63 @@
+.quote-carousel-wrapper {
+  max-width: 520px; /* adjust for hero */
+  position: relative;
+}
+
+.quote-header {
+  margin-bottom: 20px;
+}
+
+/* Quote container */
+.quote-box {
+  position: relative;
+  padding: 32px 40px;
+}
+
+/* Fixed quote icons */
+.quote-icon {
+  position: absolute;
+  font-size: 32px;
+  opacity: 0.3;
+}
+
+.quote-icon-start {
+  top: 0;
+  left: 0;
+}
+
+.quote-icon-end {
+  bottom: 0;
+  right: 0;
+}
+
+/* Quote text */
+.quote-text {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.6;
+
+  /* LOCK TO 3 LINES */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+
+  min-height: calc(1.6em * 3); /* reserves space for 3 lines */
+}
+
+/* Dots */
+.carousel-indicators {
+  position: relative;
+  margin-top: 20px;
+}
+
+.carousel-indicators [data-bs-target] {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: rgba(0,0,0,0.4);
+}
+
+.carousel-indicators .active {
+  background-color: #000;
+}

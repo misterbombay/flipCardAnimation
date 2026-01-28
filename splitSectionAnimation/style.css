@@ -5,37 +5,54 @@
 .split-wrapper {
   display: flex;
   width: 100%;
-  height: 400px; /* adjust as needed */
-  position: relative;
+  height: 420px;
 }
 
-/* LEFT CONTENT */
-.split-content {
-  width: 40%;
-  padding: 40px;
-  box-sizing: border-box;
-
-  opacity: 0;
-  transform: translateX(-40px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-/* RIGHT IMAGE */
+/* IMAGE */
 .split-image {
   width: 100%;
-  height: 100%;
-  overflow: hidden;
   transition: width 0.9s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .split-image img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* NO gaps, no distortion */
+  object-fit: cover;
   display: block;
 }
 
-/* FINAL STATE */
+/* CONTENT */
+.split-content {
+  width: 40%;
+  padding: 40px;
+  box-sizing: border-box;
+
+  opacity: 0;
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* ===== DIRECTION LOGIC ===== */
+
+/* Image on RIGHT (content on left) */
+.split-section[data-direction="right"] .split-wrapper {
+  flex-direction: row;
+}
+
+.split-section[data-direction="right"] .split-content {
+  transform: translateX(-40px);
+}
+
+/* Image on LEFT (content on right) */
+.split-section[data-direction="left"] .split-wrapper {
+  flex-direction: row-reverse;
+}
+
+.split-section[data-direction="left"] .split-content {
+  transform: translateX(40px);
+}
+
+/* ===== FINAL STATE ===== */
+
 .split-section.is-visible .split-image {
   width: 60%;
 }

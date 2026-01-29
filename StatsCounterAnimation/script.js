@@ -1,46 +1,48 @@
 <script>
-  const cards = document.querySelectorAll(".counter-card");
+  const counterCardElements = document.querySelectorAll(".counter-card");
 
-  const runCounter = (el, target) => {
-    let current = 0;
-    const duration = 1500;
-    const stepTime = Math.max(Math.floor(duration / target), 20);
+  const startCountAnimation = (valueElement, targetValue) => {
+    let currentValue = 0;
+    const animationDuration = 1500;
+    const stepInterval = Math.max(Math.floor(animationDuration / targetValue), 20);
 
-    const timer = setInterval(() => {
-      current += 1;
-      el.textContent = current;
-      if (current >= target) {
-        el.textContent = target;
-        clearInterval(timer);
+    const counterTimer = setInterval(() => {
+      currentValue += 1;
+      valueElement.textContent = currentValue;
+      if (currentValue >= targetValue) {
+        valueElement.textContent = targetValue;
+        clearInterval(counterTimer);
       }
-    }, stepTime);
+    }, stepInterval);
   };
 
-  const observer = new IntersectionObserver(
-    (entries, observer) => {
-      entries.forEach((entry, index) => {
+  const counterSectionObserver = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach((entry, idx) => {
         if (entry.isIntersecting) {
-          const card = entry.target;
+          const currentCard = entry.target;
 
           setTimeout(() => {
-            card.classList.add("is-visible");
+            currentCard.classList.add("is-visible");
 
-            const counter = card.querySelector(".counter-number");
-            const valueEl = card.querySelector(".value");
-            const target = parseInt(counter.dataset.value, 10);
+            const counterWrapper = currentCard.querySelector(".counter-number");
+            const numberValueEl = currentCard.querySelector(".value");
+            const finalValue = parseInt(counterWrapper.dataset.value, 10);
 
-            if (!counter.dataset.animated) {
-              runCounter(valueEl, target);
-              counter.dataset.animated = "true";
+            if (!counterWrapper.dataset.counted) {
+              startCountAnimation(numberValueEl, finalValue);
+              counterWrapper.dataset.counted = "true";
             }
-          }, index * 150); // stagger
+          }, idx * 150); // stagger reveal
 
-          observer.unobserve(card);
+          obs.unobserve(currentCard); // run once
         }
       });
     },
     { threshold: 0.3 }
   );
 
-  cards.forEach(card => observer.observe(card));
+  counterCardElements.forEach(card =>
+    counterSectionObserver.observe(card)
+  );
 </script>

@@ -1,0 +1,29 @@
+.page-wrapper {
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+}
+
+/* Background container */
+.icon-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none; /* important */
+}
+
+/* Icons */
+.floating-icon {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  opacity: 0.15;
+  will-change: transform;
+  transition: transform linear;
+}
+
+/* Foreground content */
+.main-content {
+  position: relative;
+  z-index: 2;
+}

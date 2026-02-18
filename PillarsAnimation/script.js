@@ -1,26 +1,41 @@
-<script>
+  const section = document.querySelector('.pillars-section');
   const pillars = document.querySelectorAll('.col');
   const iconContainer = document.querySelector('.icon-bg');
   const icons = document.querySelectorAll('.floating-icon');
 
-  // Animate pillars one by one
-  pillars.forEach((pillar, index) => {
-    setTimeout(() => {
-      pillar.classList.add('show');
-    }, index * 400); // delay between pillars
+  let hasRun = false; // prevents multiple triggers
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !hasRun) {
+        hasRun = true;
+        startAnimation();
+      }
+    });
+  }, {
+    threshold: 0.4 // trigger when 40% visible
   });
 
-  // Calculate total animation time
-  const totalPillarTime = (pillars.length - 1) * 400 + 800;
+  observer.observe(section);
 
-  setTimeout(() => {
-    // Show icon container
-    iconContainer.classList.remove('hidden');
-    iconContainer.classList.add('active');
 
-    // Start floating animation
-    startFloatingIcons();
-  }, totalPillarTime);
+  function startAnimation() {
+
+    // Animate pillars one by one
+    pillars.forEach((pillar, index) => {
+      setTimeout(() => {
+        pillar.classList.add('show');
+      }, index * 400);
+    });
+
+    const totalPillarTime = (pillars.length - 1) * 400 + 800;
+
+    setTimeout(() => {
+      iconContainer.classList.remove('hidden');
+      iconContainer.classList.add('active');
+      startFloatingIcons();
+    }, totalPillarTime);
+  }
 
 
   // ======================
@@ -77,4 +92,3 @@
       setTimeout(() => animateIcon(icon, iconContainer), entryDuration);
     });
   }
-</script>

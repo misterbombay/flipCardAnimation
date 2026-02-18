@@ -1,0 +1,35 @@
+.custom-card {
+  border-radius: 16px;
+  overflow: hidden; /* Ensures everything respects rounding */
+}
+
+.card-img-section {
+  position: relative;
+  height: 60%;
+  min-height: 220px;
+  background: url('https://picsum.photos/600/400') center/cover no-repeat;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+
+/* Background opacity layer */
+.card-img-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5); /* 50% opacity */
+  z-index: 1;
+}
+
+/* Content over image */
+.overlay-content {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  z-index: 2; /* Above opacity layer */
+}
+
+/* Bottom white section */
+.card-body {
+  height: 40%;
+}

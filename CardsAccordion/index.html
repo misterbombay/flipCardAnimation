@@ -1,0 +1,101 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<div class="container my-5">
+
+  <!-- Cards Row -->
+  <div class="row g-4">
+
+    <!-- Card 1 -->
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body text-center">
+          <h5 class="card-title">Card 1</h5>
+          <button class="btn btn-primary open-accordion" 
+                  data-target="accordion1">
+            View Details
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body text-center">
+          <h5 class="card-title">Card 2</h5>
+          <button class="btn btn-primary open-accordion" 
+                  data-target="accordion2">
+            View Details
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body text-center">
+          <h5 class="card-title">Card 3</h5>
+          <button class="btn btn-primary open-accordion" 
+                  data-target="accordion3">
+            View Details
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Accordion Section (Hidden by default) -->
+  <div id="accordionWrapper" class="mt-5 collapse">
+
+    <div class="accordion" id="dynamicAccordion">
+
+      <!-- Accordion 1 -->
+      <div class="accordion-item accordion-content d-none" id="accordion1">
+        <h2 class="accordion-header">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+            Card 1 Details
+          </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse show">
+          <div class="accordion-body">
+            Content related to Card 1.
+          </div>
+        </div>
+      </div>
+
+      <!-- Accordion 2 -->
+      <div class="accordion-item accordion-content d-none" id="accordion2">
+        <h2 class="accordion-header">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+            Card 2 Details
+          </button>
+        </h2>
+        <div id="collapseTwo" class="accordion-collapse collapse show">
+          <div class="accordion-body">
+            Content related to Card 2.
+          </div>
+        </div>
+      </div>
+
+      <!-- Accordion 3 -->
+      <div class="accordion-item accordion-content d-none" id="accordion3">
+        <h2 class="accordion-header">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
+            Card 3 Details
+          </button>
+        </h2>
+        <div id="collapseThree" class="accordion-collapse collapse show">
+          <div class="accordion-body">
+            Content related to Card 3.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
